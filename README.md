@@ -110,3 +110,32 @@ Default output format [json]:
 - ref: https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html
 - ref: https://www.pluralsight.com/resources/blog/cloud/configuring-the-aws-command-line-interface
 - ref: https://www.pluralsight.com/resources/blog/cloud/aws-s3-cheat-sheet
+
+## Make sure to cleanup as needed 🧹
+
+Although, I am on the AWS Free Tier I am charged minimal amount for Route 53 Hosted Zone usage of 0.54 USD monthly, since my websites are up for 12+ hours. If you don't have your own website (www.example.com) don't follow the steps to provsion this service. There will also be a small charge based on Bedrock model ITC - Inference Time Compute. If you host your website on AWS you may be charged additional fees.
+
+Once you're done with your stack, or if at anytime your CDK environment becomes corrupt, compromised, or unresponsive you can `cdk destroy` your enviroment. It's super easy to `cdk deploy` a new environment and you are also reducing your AWS footprint of ghost resources.
+
+- ref: https://labs.watchtowr.com/8-million-requests-later-we-made-the-solarwinds-supply-chain-attack-look-amateur/
+- ref: https://www.schneier.com/blog/archives/2025/02/delivering-malware-through-abandoned-amazon-s3-buckets.html
+- ref: https://www.wired.com/story/the-untold-story-of-solarwinds-the-boldest-supply-chain-hack-ever/
+
+### Run `cdk destroy` to destroy all resources attached to this CDK stack
+
+**Let's destroy the recently provisioned CDK stack to show how easy it is to cleanup your AWS resources with AWS CDK. This is one of the primary reasons I prefer building from the template rather than through the AWS Console.**
+
+```bash
+cdk destroy
+Are you sure you want to delete: BackendStack (y/n)? y
+```
+
+```bash
+...[truncated]...
+[SDK info] CloudFormation.DescribeStacks({"StackName":"BackendStack"}) -> OK
+[SDK info] CloudFormation.DescribeStackEvents({"StackName":"BackendStack"}) -> ValidationError: Stack [BackendStack] does not exist
+[SDK info] CloudFormation.DescribeStacks({"StackName":"BackendStack"}) -> ValidationError: Stack with id BackendStack does not exist
+[SDK info] CloudFormation.DescribeStackEvents({"StackName":"BackendStack"}) -> ValidationError: Stack [BackendStack] does not exist
+
+ ✅  BackendStack: destroyed
+```
