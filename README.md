@@ -13,6 +13,7 @@ This repo builds and deploys a fullstack AWS environment with Next.js on the fro
   - Radix UI - https://www.radix-ui.com
   - Radix Icons - https://www.radix-ui.com/icons
   - Tailwind CSS - https://tailwindcss.com
+  - monorepo using npm workspaces - https://docs.npmjs.com/cli/v11/using-npm/workspaces
   - ...
 
 - **Backend:**
@@ -25,6 +26,7 @@ This repo builds and deploys a fullstack AWS environment with Next.js on the fro
   - AWS Route 53 - https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/Welcome.html
   - AWS CloudFront CDN -
   - AWS CLI - https://docs.aws.amazon.com/cli/ | https://awscli.amazonaws.com/v2/documentation/api/latest/reference/index.html
+  - monorepo using npm workspaces - https://docs.npmjs.com/cli/v11/using-npm/workspaces
   - ...
 
 ## First, you will need to boostrap your AWS environment
@@ -59,8 +61,20 @@ Get your AWS region:
 aws configure get region
 ```
 
-Bootstrap and provision your CloudFormation ennvironment. NOTE: If you plan to deploy your application to the Internet via Route 53 to your own website (www.example.com), you will need to deploy your application in the `us-east-1` Region.
+Bootstrap and provision your CloudFormation ennvironment. You need to only do this once in each region you plan to provsion resources. NOTE: If you plan to deploy your application to the Internet via Route 53 to your own website (www.example.com), you will need to deploy your application in the `us-east-1` Region.
 
 ```bash
 cdk bootstrap aws://[***aws-acct***]/us-east-1
+```
+
+## Initalize an AWS CDK TypeScript environment. Call it `backend`.
+
+You have a wide choice of stacks, though for this repo we're using `TypeScript` on the backend which has become an industry best practice.
+
+**NOTE: This step isn't necessary if you're cloning the repo. I'm including the step sequence below to show you how to build this yourself from the ground up.**
+
+```bash
+mkdir backend
+cd backend
+cdk init app --language typescript
 ```
