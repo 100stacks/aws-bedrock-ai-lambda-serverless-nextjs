@@ -139,3 +139,34 @@ Are you sure you want to delete: BackendStack (y/n)? y
 
  ✅  BackendStack: destroyed
 ```
+
+### Rebuild and redeploy
+
+Run:
+
+```bash
+cdk deploy
+```
+
+```bash
+...[truncated]...
+[SDK info] CloudFormation.DescribeStacks({"StackName":"BackendStack"}) -> OK
+[SDK info] CloudFormation.DescribeStackEvents({"StackName":"BackendStack"}) -> OK
+BackendStack | 0/2 | 7:02:19 PM | REVIEW_IN_PROGRESS   | AWS::CloudFormation::Stack | BackendStack User Initiated
+BackendStack | 0/2 | 7:02:26 PM | CREATE_IN_PROGRESS   | AWS::CloudFormation::Stack | BackendStack User Initiated
+BackendStack | 0/2 | 7:02:28 PM | CREATE_IN_PROGRESS   | AWS::CDK::Metadata | CDKMetadata/Default (CDKMetadata)
+BackendStack | 0/2 | 7:02:29 PM | CREATE_IN_PROGRESS   | AWS::CDK::Metadata | CDKMetadata/Default (CDKMetadata) Resource creation Initiated
+BackendStack | 1/2 | 7:02:29 PM | CREATE_COMPLETE      | AWS::CDK::Metadata | CDKMetadata/Default (CDKMetadata)
+BackendStack | 2/2 | 7:02:30 PM | CREATE_COMPLETE      | AWS::CloudFormation::Stack | BackendStack
+[SDK info] CloudFormation.DescribeStacks({"StackName":"BackendStack"}) -> OK
+[SDK info] CloudFormation.DescribeStackEvents({"StackName":"BackendStack"}) -> OK
+
+ ✅  BackendStack
+
+✨  Deployment time: 14.33s
+```
+
+You will notice that our `BackendStack` will have a different ARN/Id eventhough our code/template is identical to the previously deployed CDK Stack. Also, no need to run `cdk synth` again.
+
+- ref: Amazon Resource Name (ARN) - https://docs.aws.amazon.com/managedservices/latest/userguide/find-arn.html
+- ref: https://docs.aws.amazon.com/IAM/latest/UserGuide/reference-arns.html
