@@ -78,3 +78,35 @@ mkdir backend
 cd backend
 cdk init app --language typescript
 ```
+
+### Run `cdk synth` to _synthesis_ the _cloud assembly_
+
+As AWS describes the AWS CDK _stack synthesis_:
+
+> Before you can deploy an AWS Cloud Development Kit (AWS CDK) stack, it must first be synthesized. Stack synthesis is the process of producing an AWS CloudFormation template and deployment artifacts from a CDK stack. The template and artifacts are known as the cloud assembly. The cloud assembly is what gets deployed to provision your resources on AWS. For more information on how deployments work, see How AWS CDK deployments work.
+
+- ref: https://docs.aws.amazon.com/cdk/v2/guide/configure-synth.html
+- ref: https://docs.aws.amazon.com/cdk/v2/guide/deploy.html#deploy-how
+
+## Run `cdk deploy` to deploy the instatiated template to provision AWS Resources
+
+- The command will change once we have instantiated the Next.js frontend
+
+NOTE: If you into run error deploying, make sure you are deploying to the correct region.
+
+```bash
+aws configure
+```
+
+- press return/enter to skip the first two fields and change the `Default region name` to where you've set your default region in the AWS Console upper right corner dropdown.
+
+```bash
+AWS Access Key ID [****************]:
+AWS Secret Access Key [****************]:
+Default region name [us-east-2]: us-east-1
+Default output format [json]:
+```
+
+- ref: https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html
+- ref: https://www.pluralsight.com/resources/blog/cloud/configuring-the-aws-command-line-interface
+- ref: https://www.pluralsight.com/resources/blog/cloud/aws-s3-cheat-sheet
