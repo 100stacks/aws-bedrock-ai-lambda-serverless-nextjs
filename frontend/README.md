@@ -1,6 +1,47 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Frontend - AWS Bedrock AI
 
-## Getting Started
+The frontend was created with [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+
+I'm using the previous major release `14x` as a baseline as this application has a number of third-party dependencies and we want a somewhat stable developer experience (DX).
+
+## Getting Started - Next.js v14.2.25
+
+```bash
+➜ npx create-next-app@14.2.25
+Need to install the following packages:
+create-next-app@14.2.25
+Ok to proceed? (y) y
+
+✔ What is your project named? … frontend
+✔ Would you like to use TypeScript? … No / Yes ✅
+✔ Would you like to use ESLint? … No / Yes ✅
+✔ Would you like to use Tailwind CSS? … No / Yes ✅
+✔ Would you like to use `src/` directory? … No ✅/ Yes
+✔ Would you like to use App Router? (recommended) … No / Yes ✅
+✔ Would you like to customize the default import alias (@/*)? … No / Yes ✅
+✔ What import alias would you like configured? … @/* ✅
+Creating a new Next.js app in /aws-bedrock-ai-lambda-serverless-nextjs/frontend.
+
+Using npm.
+
+Initializing project with template: app-tw
+
+
+Installing dependencies:
+- react
+- react-dom
+- next
+
+Installing devDependencies:
+- typescript
+- @types/node
+- @types/react
+- @types/react-dom
+- postcss
+- tailwindcss
+- eslint
+- eslint-config-next
+```
 
 First, run the development server:
 
