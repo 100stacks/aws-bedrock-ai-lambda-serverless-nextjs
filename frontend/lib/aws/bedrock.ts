@@ -4,6 +4,8 @@ import {
 } from "@aws-sdk/client-bedrock-runtime";
 import { ModelProvider } from "../types";
 import { MODEL_OPTIONS } from "../constraints";
+import { get } from "http";
+import { text } from "stream/consumers";
 
 // Initialize the Bedrock client
 const bedrockClient = new BedrockRuntimeClient({
@@ -95,3 +97,59 @@ const structurePrompt = (
       throw new Error(`Unsupported model provider: ${provider}`);
   }
 };
+
+// Parse response from different model providers
+const parseResponse = (provider: ModelProvider, response: any): string => {
+  switch (provider) {
+    case "claude":
+      return response.content[0].text;
+
+    case "titan":
+      return response.results[0].outputText;
+
+    case "llama":
+      return response.generation;
+
+    default:
+      throw new Error(`Unsupported model provider: ${provider}`);
+  }
+};
+
+// Invoke the model with streaming support
+export async function invokeModel(
+  provider: ModelProvider,
+  messages: Array<{ role: string; content: string }>,
+  documentContent?: string
+): Promise<ReadableStream> {
+  const modelId = getModelId(provider);
+  const requestBody = structurePrompt(provider, messages, documentContent);
+
+  const command = new InvokeModelCommand({
+    modelId,
+    contentType: "application/json",
+    accept: "application/json",
+    body: JSON.stringify(requestBody),
+  });
+
+  try {
+    const response = await bedrockClient.send(command);
+
+    // Parse the response based on the provider
+    const responseBody = JSON.parse(new TextDecoder().decode(response.body));
+    const textResponse = parseResponse(provider, requestBody);
+
+    // Create a stream from the response
+    const stream = new ReadableStream({
+      start(controller) {
+        controller.enqueue(textResponse);
+        controller.close();
+      },
+    });
+
+    return stream;
+  } catch (error: unknown) {
+    console.error(`Error invoking model: ${error}`);
+
+    throw error;
+  }
+}
