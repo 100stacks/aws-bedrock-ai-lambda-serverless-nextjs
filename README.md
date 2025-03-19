@@ -140,7 +140,7 @@ Default output format [json]:
 
 Once you no longer need your CDK stack, or if at anytime your CDK environment becomes corrupt, compromised, or unresponsive you can `cdk destroy` your enviroment. It's super easy to `cdk deploy` a new environment and you are also reducing your AWS footprint of ghost resources.
 
-**Although I am on the AWS Free Tier, I am charged a nominal amount for Route 53 Hosted Zone DNS usage of 0.54 USD monthly, as my websites are up for 12+ hours. If you don't have your own website (www.example.com) don't follow the steps to provision Route 53 or create SSL Certificates with AWS Certificate Manager. There will also be a charges based on Bedrock model ITC - Inference Time Compute usage. If you host your website on AWS or use other services, you may be charged additional fees.**
+**Although I am on the AWS Free Tier, I am charged a nominal amount for Route 53 Hosted Zone DNS usage of 0.54 USD monthly, as my websites are up for 12+ hours. If you don't have your own website (www.example.com) don't follow the steps to provision Route 53 or create SSL Certificates with AWS Certificate Manager. You will also incur charges based on Bedrock hosted models ITC - Inference Time Compute usage. If you host your website on AWS or use other services, you may be charged additional fees.**
 
 - ref: https://labs.watchtowr.com/8-million-requests-later-we-made-the-solarwinds-supply-chain-attack-look-amateur/
 - ref: https://www.schneier.com/blog/archives/2025/02/delivering-malware-through-abandoned-amazon-s3-buckets.html
