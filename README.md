@@ -27,6 +27,7 @@ This repo builds and deploys a fullstack AWS environment with Next.js on the fro
   - AWS CloudFront CDN - https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Introduction.html
   - AWS CLI - https://docs.aws.amazon.com/cli/ | https://awscli.amazonaws.com/v2/documentation/api/latest/reference/index.html
   - monorepo using npm workspaces - https://docs.npmjs.com/cli/v11/using-npm/workspaces
+  - SSL Certificates - https://letsencrypt.org/how-it-works/ | https://www.cloudflare.com/learning/ssl/what-is-an-ssl-certificate/
   - ...
 
 ## Prerequisites
@@ -139,7 +140,7 @@ Default output format [json]:
 
 Once you no longer need your CDK stack, or if at anytime your CDK environment becomes corrupt, compromised, or unresponsive you can `cdk destroy` your enviroment. It's super easy to `cdk deploy` a new environment and you are also reducing your AWS footprint of ghost resources.
 
-**Although I am on the AWS Free Tier, I am charged a nominal amount for Route 53 Hosted Zone usage of 0.54 USD monthly, since my websites are up for 12+ hours. If you don't have your own website (www.example.com) don't follow the steps to provsion this service. There will also be a charges based on Bedrock model ITC - Inference Time Compute usage. If you host your website on AWS or use other services, you may be charged additional fees.**
+**Although I am on the AWS Free Tier, I am charged a nominal amount for Route 53 Hosted Zone DNS usage of 0.54 USD monthly, as my websites are up for 12+ hours. If you don't have your own website (www.example.com) don't follow the steps to provision Route 53 or create SSL Certificates with AWS Certificate Manager. There will also be a charges based on Bedrock model ITC - Inference Time Compute usage. If you host your website on AWS or use other services, you may be charged additional fees.**
 
 - ref: https://labs.watchtowr.com/8-million-requests-later-we-made-the-solarwinds-supply-chain-attack-look-amateur/
 - ref: https://www.schneier.com/blog/archives/2025/02/delivering-malware-through-abandoned-amazon-s3-buckets.html
@@ -166,7 +167,7 @@ Are you sure you want to delete: BackendStack (y/n)? y
 
 ### Rebuild and redeploy
 
-Let's see how easy it is rebuild and deploy the CDK stack.
+Let's see how easy it is rebuild and deploy our CDK stack.
 
 Run:
 
