@@ -1,5 +1,5 @@
 // Model types
-export type ModelProvider = "anthropic" | "titan" | "llama";
+export type ModelProvider = "claude" | "titan" | "llama";
 
 export interface ModelOption {
   id: ModelProvider;
