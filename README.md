@@ -23,8 +23,8 @@ This repo builds and deploys a fullstack AWS environment with Next.js on the fro
   - AWS CloudFormation - https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html
   - AWS CloudWatch - https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html
   - AWS Certificate Manager (ACM) - https://docs.aws.amazon.com/acm/latest/userguide/acm-overview.html
-  - AWS Route 53 - https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/Welcome.html
-  - AWS CloudFront CDN -
+  - AWS Route 53 DNS - https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/Welcome.html
+  - AWS CloudFront CDN - https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Introduction.html
   - AWS CLI - https://docs.aws.amazon.com/cli/ | https://awscli.amazonaws.com/v2/documentation/api/latest/reference/index.html
   - monorepo using npm workspaces - https://docs.npmjs.com/cli/v11/using-npm/workspaces
   - ...
@@ -37,7 +37,7 @@ This fullstack application is built and deployed on AWS infrastructure.
 - Install AWS CLI - https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
 - AWS Free FAQs - https://aws.amazon.com/free/free-tier-faqs/
 
-**_WARNING: If you follow along with all steps in this repo, you will incur some costs. Make sure to set pre-defined spending limits to reduce the chances of runaway charges. Keep aware of your ongoing resource usage and understand some "Free" services have a time and/or usage term limit._**
+**_WARNING: If you follow along with all steps in this repo, you will incur some costs. It should not be more than a few (less than $3 USD to date). Make sure to set pre-defined spending limits to reduce the chances of runaway charges. Keep aware of your ongoing resource usage and understand some "Free" services have a time and/or usage term limit._**
 
 ## Bootstrap your AWS CloudFormation enviroment
 
@@ -85,11 +85,13 @@ Bootstrap and provision your CloudFormation ennvironment. You need to only do th
 cdk bootstrap aws://[***aws-acct***]/us-east-1
 ```
 
-## Initalize an AWS CDK TypeScript environment. Call it `backend`.
+## Initalize your AWS CDK TypeScript environment.
 
 You have a wide choice of stacks, though for this repo we're using `TypeScript` on the backend which has become an industry standard best practice.
 
 **NOTE: This next step isn't necessary if you're cloning the repo. I'm including the step sequence below to show you how to build this yourself from the ground up.**
+
+**_AWS CDK uses the current directory name - `backend` - to create the AWS CDK Stack - `BackendStack`_**
 
 ```bash
 mkdir backend
