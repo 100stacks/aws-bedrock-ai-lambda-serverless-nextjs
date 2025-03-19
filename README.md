@@ -37,7 +37,7 @@ This fullstack application is built and deployed on AWS infrastructure.
 - Install AWS CLI - https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
 - AWS Free FAQs - https://aws.amazon.com/free/free-tier-faqs/
 
-**_WARNING: If you follow along with all steps in this repo, you will incur some costs. It should not be more than a few (less than $3 USD to date). Make sure to set pre-defined spending limits to reduce the chances of runaway charges. Keep aware of your ongoing resource usage and understand some "Free" services have a time and/or usage term limit._**
+**_WARNING: If you follow along with all steps in this repo, you will incur some costs. It should not be more than a few dollars (for me, it's been less than $3 USD to date). Make sure to set pre-defined spending limits to reduce the chances of runaway charges. Keep aware of your ongoing resource usage and understand some "Free" services have a time and/or usage term limit._**
 
 ## Bootstrap your AWS CloudFormation enviroment
 
@@ -59,19 +59,19 @@ I prefer AWS CDK over ([AWS Amplify](https://aws.amazon.com/amplify/)). AWS Ampl
 
 In order to use AWS CDK in an AWS Region, you have to bootstrap `CloudFormation` in that region. NOTE: If you plan to deploy your application to the Internet via Route 53 on your own website (www.example.com), you will need to deploy your application in the `us-east-1` Region.
 
-ref: https://docs.aws.amazon.com/general/latest/gr/r53.html#r53_region_domain_registration
-ref: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/domain-register.html
-ref: https://aws.amazon.com/about-aws/global-infrastructure/regions_az/
-ref: https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html
-ref: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.RegionsAndAvailabilityZones.html
+- ref: https://docs.aws.amazon.com/general/latest/gr/r53.html#r53_region_domain_registration
+- ref: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/domain-register.html
+- ref: https://aws.amazon.com/about-aws/global-infrastructure/regions_az/
+- ref: https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html
+- ref: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.RegionsAndAvailabilityZones.html
 
-Get your AWS account number (copy the `Account` number with no quotes):
+**Get your AWS account number (copy the `Account` number with no quotes):**
 
 ```bash
 aws sts get-caller-identity --query Account --output text
 ```
 
-Get your AWS region:
+**Get your AWS region:**
 
 ![AWS Region](https://github.com/user-attachments/assets/1cfcd2a7-f5dc-4561-8ebd-52a8554ec6a6)
 
@@ -79,7 +79,9 @@ Get your AWS region:
 aws configure get region
 ```
 
-Bootstrap and provision your CloudFormation ennvironment. You need to only do this once in each region you plan to provsion resources. NOTE: If you plan to deploy your application to the Internet via Route 53 to your own website (www.example.com), you will need to deploy your application in the `us-east-1` Region.
+Bootstrap and provision your CloudFormation ennvironment. You need to only do this once in each region you plan to provision resources.
+
+**NOTE: If you plan to deploy your application to the Internet via Route 53 to your own website (www.example.com), you will need to deploy your application in the `us-east-1` Region.**
 
 ```bash
 cdk bootstrap aws://[***aws-acct***]/us-east-1
@@ -87,11 +89,11 @@ cdk bootstrap aws://[***aws-acct***]/us-east-1
 
 ## Initalize your AWS CDK TypeScript environment.
 
-You have a wide choice of stacks, though for this repo we're using `TypeScript` on the backend which has become an industry standard best practice.
+You have a wide choice of stacks, though for this application we're using `TypeScript` on the backend which has become an industry standard best practice.
 
 **NOTE: This next step isn't necessary if you're cloning the repo. I'm including the step sequence below to show you how to build this yourself from the ground up.**
 
-**_AWS CDK uses the current directory name - `backend` - to create the AWS CDK Stack - `BackendStack`_**
+**NOTE: _AWS CDK uses the current directory name - `backend` - to create the AWS CDK Stack - `BackendStack`_**
 
 ```bash
 mkdir backend
@@ -112,7 +114,9 @@ As AWS describes the AWS CDK _stack synthesis_:
 
 - We will run a different command from the project root directory once we have instantiated the Next.js frontend.
 
-NOTE: If you run into an error deploying, make sure you are deploying to the correct region.
+**NOTE: If you run into an error deploying, make sure you are deploying to the correct region.**
+
+![AWS Region](https://github.com/user-attachments/assets/9d0b0a5e-53d6-489a-b591-4072c20cad99)
 
 ```bash
 aws configure
