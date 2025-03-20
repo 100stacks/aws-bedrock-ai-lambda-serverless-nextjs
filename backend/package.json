@@ -1,6 +1,7 @@
 {
   "name": "@100stacks/backend",
   "version": "0.1.0",
+  "private": true,
   "description": "CDK Infrastructure stack that supports app deployment to AWS.",
   "bin": {
     "backend": "bin/backend.js"
