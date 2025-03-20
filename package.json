@@ -35,8 +35,7 @@
   },
   "homepage": "https://github.com/100stacks/aws-bedrock-ai-lambda-serverless-nextjs#readme",
   "workspaces": [
-    "apps/**",
-    "backend/**",
-    "packages/**"
+    "frontend/**",
+    "backend/**"
   ]
 }
