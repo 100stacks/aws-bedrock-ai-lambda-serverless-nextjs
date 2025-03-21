@@ -1,12 +1,49 @@
+import * as path from "path";
 import * as cdk from "aws-cdk-lib";
 import { Construct } from "constructs";
 import * as s3 from "aws-cdk-lib/aws-s3";
 import * as s3deploy from "aws-cdk-lib/aws-s3-deployment";
 import * as cloudfront from "aws-cdk-lib/aws-cloudfront";
+import * as route53 from "aws-cdk-lib/aws-route53";
+import * as acm from "aws-cdk-lib/aws-certificatemanager";
+
+import { getAppEnvConfig } from "../helpers";
 
 export class BedrockAIStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
+
+    // get environment vars
+    const config = getAppEnvConfig();
+    console.log(config);
+
+    /**
+     * ACM - AWS Certificate Manager
+     * Route 53 - AWS DNS Service
+     *
+     * Automatically provision SSL/TLS Certificates for the specified Rout53 Zone
+     */
+
+    // fetch Route 53 Hosted Zone
+    // NOTE: AWS charges for this if your site is up more than 12+ hours
+    const route53Zone = route53.HostedZone.fromLookup(this, "zone", {
+      domainName: config.apexDomain,
+    });
+
+    // this will create a SSL/TLS certificate
+    const acmSSLCertificate = new acm.Certificate(this, "certficate", {
+      domainName: config.apexDomain,
+      subjectAlternativeNames: [config.fullUrl],
+      validation: acm.CertificateValidation.fromDns(route53Zone),
+    });
+
+    // viewer certificate
+    const viewerCertificate = cloudfront.ViewerCertificate.fromAcmCertificate(
+      acmSSLCertificate,
+      {
+        aliases: [config.fullUrl],
+      }
+    );
 
     // s3 bucket where construct will reside
     const bucket = new s3.Bucket(this, "WebsiteS3Bucket", {
@@ -28,6 +65,7 @@ export class BedrockAIStack extends cdk.Stack {
       this,
       "WebsiteCloudFrontDist",
       {
+        viewerCertificate: viewerCertificate,
         originConfigs: [
           {
             s3OriginSource: {
