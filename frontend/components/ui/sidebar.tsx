@@ -443,7 +443,7 @@ SidebarGroup.displayName = "SidebarGroup";
 //   React.ComponentPropsWithRef<"div"> & { asChild?: boolean }
 // >(({ className, asChild = false, ...props }, ref) => {
 //   const Comp = asChild ? Slot : "div";
-
+//
 //   return (
 //     <Comp
 //       // Don't pass ref directly when using Slot

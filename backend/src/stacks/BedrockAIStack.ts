@@ -46,7 +46,7 @@ export class BedrockAIStack extends cdk.Stack {
     // s3 construct to deploy the website dist content
     new s3deploy.BucketDeployment(this, "WebsiteS3BucketDeploy", {
       destinationBucket: bucket,
-      sources: [s3deploy.Source.asset("../apps/frontend/dist")],
+      sources: [s3deploy.Source.asset("../frontend/dist")],
       distribution: distro,
       distributionPaths: ["/*"],
     });

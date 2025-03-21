@@ -94,11 +94,13 @@ const structurePrompt = (
       };
 
     default:
+      const exhastiveCheck: never = provider;
       throw new Error(`Unsupported model provider: ${provider}`);
   }
 };
 
 // Parse response from different model providers
+/* eslint-disable  @typescript-eslint/no-explicit-any */
 const parseResponse = (provider: ModelProvider, response: any): string => {
   switch (provider) {
     case "claude":
@@ -111,6 +113,7 @@ const parseResponse = (provider: ModelProvider, response: any): string => {
       return response.generation;
 
     default:
+      const exhastiveCheck: never = provider;
       throw new Error(`Unsupported model provider: ${provider}`);
   }
 };
