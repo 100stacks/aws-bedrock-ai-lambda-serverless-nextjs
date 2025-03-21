@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import * as cdk from "aws-cdk-lib";
-import { BedrockAIStack } from "./stacks";
+import { BedrockAIStack } from "./cdk-stacks";
 
 const app = new cdk.App();
 new BedrockAIStack(app, "BedrockAIStack", {

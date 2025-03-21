@@ -6,8 +6,8 @@
   "scripts": {
     "frontend:dev": "npm run dev --workspace=@100stacks/frontend",
     "frontend:build": "npm run build --workspace=@100stacks/frontend",
-    "infra:deploy": "cd backend; cdk deploy",
-    "infra:destroy": "cd backend; cdk destroy"
+    "aws:deploy": "cd backend; cdk deploy",
+    "aws:destroy": "cd backend; cdk destroy"
   },
   "repository": {
     "type": "git",
