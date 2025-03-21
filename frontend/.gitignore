@@ -16,6 +16,9 @@
 # production
 /build
 
+# Next.js production export directory
+dist/**
+
 # misc
 .DS_Store
 *.pem

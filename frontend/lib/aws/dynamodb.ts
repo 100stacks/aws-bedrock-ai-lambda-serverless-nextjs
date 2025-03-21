@@ -54,6 +54,7 @@ export async function getDocument(id: string): Promise<Document | null> {
 
 // Query all documents based on a condition
 // https://dynobase.dev/dynamodb-scan-vs-query/ | https://dynobase.dev/dynamodb-scan-vs-query/
+/* eslint-disable  @typescript-eslint/no-explicit-any */
 export async function queryDocuments<T extends Document>(
   partitionKey: string,
   partitionValue: string,
